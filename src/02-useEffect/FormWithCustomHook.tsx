@@ -1,5 +1,6 @@
-import { ChangeEvent, useEffect, useState } from 'react';
-import { Message } from '../02-useEffect/Message';
+// import { useState } from 'react';
+// import { Message } from '../02-useEffect/Message';
+import { useForm } from "../hooks/useForm";
 
 interface User {
   username: string;
@@ -8,21 +9,14 @@ interface User {
 }
 
 export const FormWithCustomHook = () => {
-  const [formState, setFormState] = useState<User>({
-    username: '',
-    email: '',
-    password: '',
-  });
-
-  const { username, email, password } = formState;
-
-  function onInputChange(event: ChangeEvent<HTMLInputElement>) {
-    const { name, value } = event.target;
-    setFormState({
-      ...formState,
-      [name]: value,
+  const { onInputChange, username, email, password, onResetForm } =
+    useForm<User>({
+      username: "",
+      email: "",
+      password: "",
     });
-  }
+
+  // const { username, email, password } = formState;
 
   return (
     <>
@@ -53,7 +47,10 @@ export const FormWithCustomHook = () => {
         value={password}
         onChange={onInputChange}
       />
-      {username === 'guillermovalverde' && <Message />}
+
+      <button className="btn btn-primary mt-2" onClick={onResetForm}>
+        Borrar
+      </button>
     </>
   );
 };
