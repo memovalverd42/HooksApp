@@ -7,7 +7,7 @@ interface HijoProps {
 
 export const Hijo: FC<HijoProps> = memo(({ numero, incrementar }) => {
 
-    console.log('  Me volví a generar :(  ');
+    // console.log('  Me volví a generar :(  ');
 
     return (
         <button
