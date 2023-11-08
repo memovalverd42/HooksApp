@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, FormEvent } from "react";
 import { useForm } from "../hooks";
 
 interface TodoDescription {
@@ -9,12 +9,11 @@ interface TodoAddProps {
     onNewTodo: ({todo}: Todo) => void
 }
 
-
 export const TodoAdd: FC<TodoAddProps> = ({ onNewTodo }) => {
 
     const { onInputChange, todo, onResetForm } = useForm<TodoDescription>({todo: ''});
 
-    const onFormSubmit = ( event: SubmitEvent ) => {
+    const onFormSubmit = ( event: FormEvent ) => {
         event.preventDefault();
         if( todo.length <= 1 ) return;
 
@@ -25,10 +24,12 @@ export const TodoAdd: FC<TodoAddProps> = ({ onNewTodo }) => {
         }
 
         onNewTodo(newTodo);
+        onResetForm();
+
     }
 
     return (
-        <form onSubmit={onFormSubmit}>
+        <form onSubmit={ onFormSubmit }>
             <input
                 type="text"
                 placeholder="Que hay que hacer?"

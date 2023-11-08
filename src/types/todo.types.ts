@@ -5,5 +5,6 @@ export interface Todo {
 }
 
 export type Actions = 
-    | { type: 'add', payload: string }
-    | { type: 'toggle', payload: number }
+    | { type: '[TODO] Add Todo', payload: Todo }
+    | { type: '[TODO] Delete Todo', payload: number }
+    | { type: '[TODO] Toggle Todo', payload: number }
