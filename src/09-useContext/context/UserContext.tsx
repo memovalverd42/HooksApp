@@ -7,7 +7,7 @@ export interface User {
 
 export interface UserContextProps {
     user: User | undefined;
-    onSetUser: ( user: User ) => void;
+    onSetUser: ( user: User ) => void | undefined;
 }
   
 export const UserContext = createContext<UserContextProps>({} as UserContextProps);
